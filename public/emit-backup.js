@@ -46,7 +46,7 @@ function timeoutFunction () {
 document.querySelector('#m').addEventListener('keydown', keyDownHandler)
 function keyDownHandler (e) {
   console.log('detected typing')
-  if (e.keyCode !== 13 && $('input').val() === "") {
+  if (e.keyCode !== 13 && e.keyCode !== 46 && $('input').val() === "") {
     typing = true
     socket.emit('typing', true)
   } else {
@@ -63,10 +63,10 @@ function removeTypingAlert () {
 }
 
 function typingAlert () {
-  if ($("#yoyoyo").length === 0) {
+  if ($("#updates ul").length === 0) {
     $('<ul id="yoyoyo"><i>someone is typing...</i></ul>')
     .appendTo('#updates')
-    console.log("UL added")
+    // io.emit("typing", true)
   }
   removeTypingAlert()
   clearTimeout(timeout)

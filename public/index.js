@@ -36,8 +36,8 @@ io.on('connection', socket => {
   socket.on('chat message', msg => {
     io.emit('chat message', (msg.userName + ": " + msg.message));
   })
-  socket.on("typing", msg => {
-    io.emit('isTyping', console.log("someone is typing"))
+  socket.on("typing", data => {
+    io.emit("isTyping", true)
   })
 })
 

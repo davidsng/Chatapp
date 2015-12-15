@@ -15,39 +15,15 @@
   </head>
   <body>
     <ul id="messages"></ul>
-    <div>
-      <ul id="updates"></ul>
-    </div>
+    <div> <ul id="updates"></ul></div>
     <form action="submitMessage">
-      <input id="n" name="userName" value="" autocomplete="off" />
+      <!-- <input id="n" name="userName" value="" autocomplete="off" /> -->
       <input id="m" name= "message" value="" autocomplete="off" /><button>Send</button>
     </form>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <script src = "js/angular.min.js"></script>
     <script src="/emit.js"></script>
-    <script src="/index.js"></script>
     <script> var socket = io() </script>
-    <script type="text/javascript">
-    function timeoutFunction () {
-      typing = false
-      socket.emit('typing', false)
-    }
-    document.getElementById('m').addEventListener('keyup', keyDownHandler, false)
-
-    function keyDownHandler (e) {
-      if (e.keyCode > 0) {
-        console.log("detected typing")
-        typing = true
-        socket.emit('typing', true)
-        timeout = setTimeout(timeoutFunction, 5000)
-      } else {
-        clearTimeout(timeout)
-        timeout = setTimeout(timeoutFunction, 5000)
-      }
-    })
-    </script>
-    <script src="typing.js"></script>
   </body>
 </html>

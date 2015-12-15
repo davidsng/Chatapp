@@ -2,6 +2,65 @@ var typing = false
 var timeout = undefined
 const socket = io()
 
+function typingAlert() {
+  console.log("aaa is typing");
+}
+
+function timeoutFunction () {
+  typing = false
+  socket.emit('typing', false)
+}
+
+function timeoutTyping () {
+  setTimeout(function() {
+    if (document.querySelector('#updates').length > 0) {
+      $('#updates').remove()}}, 5000)
+}
+
+function typingAlert () {
+  $('<span>...XYZ is typing...</span>')
+    .appendTo('#updates')
+    timeoutTyping()
+    // .doTimeout( 5000, 'remove' );
+
+  // var messages = document.getElementById('updates')
+  // var li = document.createElement('li')
+  // li.textContent = "...someone is typing..."
+  // messages.appendChild(li)
+}
+
+var timeout
+
+document.querySelector('#m')
+  .addEventListener('keydown', keyDownHandler)
+function keyDownHandler (e) {
+  console.log("detected typing")
+  if (e.keyCode !== 13) {
+    typing = true
+    socket.emit('typing', true)
+    typingAlert()
+    timeout = setTimeout(timeoutFunction, 5000)
+  } else {
+    clearTimeout(timeout)
+    timeout = setTimeout(timeoutFunction, 5000)
+  }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // onKeyDownNotEnter()
